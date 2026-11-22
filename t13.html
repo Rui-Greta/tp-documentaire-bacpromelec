@@ -142,7 +142,7 @@ try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && typeof s === "ob
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} }
 /* ---------- Envoi des résultats au professeur (Google Sheets) ----------
    ▼ Coller entre les guillemets l'adresse de l'application Web (elle finit par /exec) */
-const ADRESSE_TABLEAU = "https://script.google.com/macros/s/AKfycbzfEvGtiVacf2xDsoUkuLES6zJSNrVvA8mOsB0vXh0h2ZNXSyAPv-gmiQNStsqRGjv5/exec";
+const ADRESSE_TABLEAU = "https://script.google.com/macros/s/AKfycbymdyxGTwKUs5fB0Zrx-vDM8FwlNEBL8ENU7SJPU-kUU6y5b2aq3T6Mi1oQ_ER45Zd4aQ/exec";
 const CLE_TABLEAU = "melec-greta";
 const SEANCE = "T13";
 const QKEY = KEY + "-envoi";
