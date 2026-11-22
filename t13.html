@@ -189,7 +189,7 @@ function home(){
   <p class="muted">${total} exercices en 4 missions. Faites les missions quand le parcours vous y invite (après le quiz du chapitre 5). La correction s'affiche après chaque réponse.</p>
   <div class="panel" style="margin-block:14px">
     <label class="f" for="prenom">Votre prénom</label>
-    <input type="text" id="prenom" autocomplete="given-name" maxlength="30" value="${esc(st.prenom)}" placeholder="ex. Karim">
+    <input type="text" id="prenom" autocomplete="given-name" maxlength="30" value="${esc(st.prenom)}" placeholder="ex. Rui">
   </div>
   <div class="stack" id="list"></div>
   ${done ? `<div class="actions"><button class="btn sec" id="bilan">Voir mon bilan (${pts} / ${total})</button></div>` : ""}
