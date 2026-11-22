@@ -180,7 +180,7 @@ function accueil(){
   app.innerHTML = header() + `<h1>Domotique et GTB tertiaire</h1>
   <p class="muted">Suivez le parcours dans l'ordre : chaque étape s'ouvre quand la précédente est faite. Votre progression reste enregistrée sur cet appareil.</p>
   <div class="panel" style="margin-block:12px"><label class="f" for="prenom">Prénom et initiale du nom</label>
-  <input type="text" id="prenom" maxlength="30" value="${esc(st.prenom)}" placeholder="ex. Rui."></div>
+  <input type="text" id="prenom" maxlength="30" value="${esc(st.prenom)}" placeholder="ex. Rui"></div>
   ${LIBRE ? '<p class="hint">Mode libre : toutes les étapes sont ouvertes.</p>' : ""}
   <div class="stack" id="list"></div>
   <footer>${CFG.foot}</footer>`;
