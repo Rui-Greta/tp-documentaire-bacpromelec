@@ -185,7 +185,7 @@ function recap(){
 function envoyer(){
   let note = 0; const det = D.map((q, i) => { const ok = st.rep[i] === q.k; if (ok) note++; return "Q" + (i + 1) + (ok ? "✓" : "✗"); });
   st.note = note; st.fini = true; save();
-  const q = fileEnvoi(); q.push({id: Date.now() + "-e", cle: CLE_TABLEAU, seance: SEANCE, prenom: st.prenom, mission: "", titre: "Évaluation " + det.join(" "), score: note, sur: D.length, essai: 1});
+  const q = fileEnvoi(); q.push({id: Date.now() + "-e", cle: CLE_TABLEAU, seance: SEANCE, prenom: st.prenom, mission: "", titre: "Évaluation " + det.join(" "), score: note, sur: D.length, essai: st.essai || 1});
   try { localStorage.setItem(QKEY, JSON.stringify(q)); } catch(e){}
   resultat(); viderFile();
 }
@@ -195,7 +195,12 @@ function resultat(){
   <div class="panel stack"><div><span class="big">${s} / ${n}</span></div>
   <p class="muted" style="margin:0">${s >= n * 0.8 ? "Très bon résultat." : s >= n * 0.5 ? "Résultat correct : relisez les points du cours qui vous ont posé problème." : "Reprenez le cours et les exercices de la séance."} La correction sera faite en classe.</p>
   <p id="envoi" class="muted" style="margin:0;font-size:.85em"></p></div>
+  ${/[?&]libre=1/.test(location.search) ? '<div class="actions"><button class="btn sec" id="rz">Recommencer l\'évaluation</button></div>' : ""}
   <footer>GRETA GIP FIPAN · Bac Pro MELEC · T13</footer>`;
+  const rz = document.getElementById("rz");
+  if (rz) rz.onclick = () => { if (!rz.dataset.ok) { rz.dataset.ok = 1; rz.textContent = "Confirmer : effacer cette copie et recommencer"; return; }
+    st = {prenom: st.prenom, ordre: melange(D.length), opts: D.map(q => melange(q.o.length)), rep: {}, i: 0, fini: false, note: null, essai: (st.essai || 1) + 1};
+    save(); accueil(); window.scrollTo(0, 0); };
   if (!fileEnvoi().length && ADRESSE_TABLEAU.indexOf("http") === 0) majEnvoi("✓ Copie transmise au professeur.");
 }
 function fileEnvoi(){ try { return JSON.parse(localStorage.getItem(QKEY)) || []; } catch(e){ return []; } }
